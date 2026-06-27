@@ -7,7 +7,7 @@ local Functions = loadstring(game:HttpGet(BaseUrl .. "functions.lua"))()(Config)
 local Menu = loadstring(game:HttpGet(BaseUrl .. "menu.lua"))() 
 
 -- Теперь вызываем создание меню
-local UI = Menu.CreateMenu() 
+local UI = Menu.CreateMenu(Config) 
 
 game:GetService("RunService").RenderStepped:Connect(function()
     pcall(function()
