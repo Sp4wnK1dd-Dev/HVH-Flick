@@ -1,16 +1,21 @@
 -- config.lua
-local Config = {
-    -- Состояния функций
+return {
     Toggles = {
-        ["AutoBunnyhop"] = false,
-        ["Triggerbot"] = false,
+        ["RageBot"] = false,
         ["Aimbot"] = false,
-        ["Chams"] = false
-    },
-    -- Параметры
-    Settings = {
-        ["AimSmoothness"] = 0.5,
-        ["MinDamage"] = 20
+        ["AutoShoot"] = false,
+        ["Resolver"] = false,
+        ["MinDamage"] = false,
+        ["AntiAim"] = false,
+        ["Fakeduck"] = false,
+        ["LegitAim"] = false,
+        ["Triggerbot"] = false,
+        ["RCS"] = false,
+        ["Chams"] = false,
+        ["Skeletons"] = false,
+        ["InfoESP"] = false,
+        ["Skinchanger"] = false,
+        ["Movement"] = false
     }
 }
 
