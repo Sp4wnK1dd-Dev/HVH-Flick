@@ -1,5 +1,18 @@
 -- main.lua
-local BaseUrl = "https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/main/"
+local success, result = pcall(function()
+    return game:HttpGet("https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/main/config.lua")
+end)
+
+if success and result ~= "" then
+    local func = loadstring(result)
+    if func then
+        func() -- Теперь это точно сработает
+    else
+        warn("Loadstring вернул nil, проверь синтаксис файла!")
+    end
+else
+    warn("Не удалось скачать файл: " .. tostring(result))
+end
 
 local Config = loadstring(game:HttpGet(BaseUrl .. "config.lua"))()
 local Functions = loadstring(game:HttpGet(BaseUrl .. "functions.lua"))()(Config)
