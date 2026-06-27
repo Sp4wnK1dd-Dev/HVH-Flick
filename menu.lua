@@ -1,4 +1,6 @@
 -- menu.lua
+print("Меню загрузилось и пытается создаться...")
+
 local Library = {}
 
 function Library.CreateMenu()
