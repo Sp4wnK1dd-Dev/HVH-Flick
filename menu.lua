@@ -25,4 +25,5 @@ function Library.CreateMenu()
     }
 end
 
+return { CreateMenu = function() -- твой код создания UI end }
 return Library
