@@ -373,5 +373,21 @@ local LocalPlayer = game.Players.LocalPlayer
     end
 end
 
+Functions.ThirdPerson = function(isEnabled)
+    local Player = game.Players.LocalPlayer
+    local Camera = workspace.CurrentCamera
+    
+    if isEnabled then
+        -- Устанавливаем режим камеры для вида от 3-го лица
+        Player.CameraMode = Enum.CameraMode.Classic
+        -- Смещаем камеру немного назад (на 10-15 единиц)
+        local offset = CFrame.new(0, 2, 12) 
+        Camera.CFrame = Player.Character.HumanoidRootPart.CFrame * offset
+    else
+        -- Возврат в режим от 1-го лица
+        Player.CameraMode = Enum.CameraMode.LockFirstPerson
+    end
+end
+
     return Functions
 end
