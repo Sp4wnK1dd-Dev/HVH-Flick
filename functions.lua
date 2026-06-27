@@ -1,48 +1,35 @@
 -- functions.lua
-local Functions = {}
+return function(Config)
+    local Functions = {}
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
 
--- Модуль RageBot
-Functions.RageBot = {
-    Aimbot = function(target) -- Логика автонаведения
-    end,
-    Resolver = function(player) -- Логика прорахунку захисту
+    -- Реализация Auto-Bunnyhop
+    Functions.AutoBunnyhop = function()
+        local character = LocalPlayer.Character
+        if character and character:FindFirstChild("Humanoid") then
+            if LocalPlayer:GetMouse().Button1Down then -- Пример условия
+                character.Humanoid.Jump = true
+            end
+        end
     end
-}
 
--- Модуль Anti-Aim
-Functions.AntiAim = {
-    Desync = function() -- Логика создания фейковой модели
-    end,
-    Fakeduck = function() -- Логика для стрельбы из-за укрытия
+    -- Реализация Chams (простой вариант - Highlight)
+    Functions.ToggleChams = function(state)
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= LocalPlayer and player.Character then
+                local highlight = player.Character:FindFirstChild("Highlight")
+                if state then
+                    if not highlight then
+                        highlight = Instance.new("Highlight", player.Character)
+                        highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                    end
+                else
+                    if highlight then highlight:Destroy() end
+                end
+            end
+        end
     end
-}
 
--- Модуль LegitBot
-Functions.LegitBot = {
-    Triggerbot = function() -- Прихованная стрельба
-    end,
-    RCS = function() -- Контроль отдачи
-    end
-}
-
--- Модуль Visuals (ESP)
-Functions.Visuals = {
-    Chams = function(player) -- Визуализация
-    end,
-    InfoESP = function(player) -- Показ данных
-    end
-}
-
--- Модуль Inventory
-Functions.Skinchanger = {
-    ApplySkin = function(skinName) -- Подмена текстур
-    end
-}
-
--- Модуль Misc
-Functions.Movement = {
-    AutoBunnyhop = function() -- Авто-баннихоп
-    end
-}
-
-return Functions
+    return Functions
+end
