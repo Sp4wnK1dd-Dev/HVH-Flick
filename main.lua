@@ -13,29 +13,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
         if Config.Toggles["Movement"] then Functions.Movement() end
         
         -- 2. RageBot
-        if Config.Toggles["RageBot"] then Functions.RageBot() 
-                local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    local Camera = workspace.CurrentCamera
-    
-    local closestPlayer = nil
-    local shortestDistance = math.huge
-    
-    -- Ищем ближайшего врага
-    for _, player in pairs(Players:GetPlayers()) do
-        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-            local targetPart = player.Character.HumanoidRootPart
-            local screenPos, onScreen = Camera:WorldToViewportPoint(targetPart.Position)
-            
-            if onScreen then
-                local dist = (Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2) - Vector2.new(screenPos.X, screenPos.Y)).Magnitude
-                if dist < shortestDistance then
-                    shortestDistance = dist
-                    closestPlayer = targetPart
-                end
-            end
-        end
-    end
+        if Config.Toggles["RageBot"] then Functions.RageBot() end
     
     -- Наводимся на цель
     if closestPlayer then
