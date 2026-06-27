@@ -14,7 +14,20 @@ game:GetService("RunService").RenderStepped:Connect(function()
         
         -- 2. RageBot
         if Config.Toggles["RageBot"] then Functions.RageBot() end
-        if Config.Toggles["Aimbot"] then Functions.Aimbot() end
+        -- В main.lua
+        if Config.Toggles["Aimbot"] then 
+            local target = Functions.GetClosestTarget() -- Нужно создать эту функцию поиска
+            if target then
+                -- Проверка Min Damage перед стрельбой
+                if Config.Toggles["MinDamage"] then
+                    if Functions.MinDamage(target) then
+                        Functions.Shoot(target)
+                    end
+                else
+                    Functions.Shoot(target) -- Если выключено, стреляем всегда
+                end
+            end
+        end
         if Config.Toggles["AutoShoot"] then Functions.AutoShoot() end
         if Config.Toggles["Resolver"] then Functions.Resolver() end
         if Config.Toggles["MinDamage"] then Functions.MinDamage() end
