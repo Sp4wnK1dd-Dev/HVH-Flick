@@ -1,22 +1,16 @@
--- main.lua (Главный загрузчик)
-local BaseUrl = "https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/main/" -- Замените на свой URL
+-- main.lua
+local BaseUrl = "https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/main/"
 
--- Загрузка модулей
+-- Загружаем конфиг первым!
 local Config = loadstring(game:HttpGet(BaseUrl .. "config.lua"))()
-local Menu = loadstring(game:HttpGet(BaseUrl .. "menu.lua"))()
-local Functions = loadstring(game:HttpGet(BaseUrl .. "functions.lua"))()
 
--- Инициализация меню
-local UI = Menu.CreateMenu()
+-- Передаем Config в меню и функции
+local Menu = loadstring(game:HttpGet(BaseUrl .. "menu.lua"))()(Config) 
+local Functions = loadstring(game:HttpGet(BaseUrl .. "functions.lua"))()(Config)
 
--- Функция связи (пример для Movement)
+-- Теперь цикл будет проверять Config.Toggles
 game:GetService("RunService").RenderStepped:Connect(function()
-    pcall(function()
-        -- Если в конфиге включен AutoBunnyhop, вызываем функцию из модуля
-        if Config.Movement["AutoBunnyhop"] then
-            Functions.Movement.AutoBunnyhop()
-        end
-        
-        -- Сюда добавляем остальные проверки...
-    end)
+    if Config.Toggles["AutoBunnyhop"] then
+        Functions.Movement.AutoBunnyhop()
+    end
 end)
