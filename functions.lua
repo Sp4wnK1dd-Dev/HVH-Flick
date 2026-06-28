@@ -233,6 +233,18 @@ local LocalPlayer = game.Players.LocalPlayer
 end
     
     -- Visuals
+Functions.Chams = function(Config)
+    if not Config.Visuals.Chams then return end
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer and player.Character then
+            -- Простая подсветка через Highlight
+            local highlight = player.Character:FindFirstChild("Highlight") or Instance.new("Highlight", player.Character)
+            highlight.FillColor = Color3.fromRGB(255, 0, 0)
+            highlight.Enabled = true
+        end
+    end
+end
+
     Functions.Chams = function() 
 local Players = game:GetService("Players")
     local LocalPlayer = Players.LocalPlayer
