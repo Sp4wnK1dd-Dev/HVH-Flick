@@ -1,5 +1,5 @@
 -- main.lua
-local BaseUrl = "https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/refs/heads/main/"
+local BaseUrl = "https://raw.githubusercontent.com/Sp4wnK1dd-Dev/HVH-Flick/main/"
 
 -- Функция безопасной загрузки
 local function loadModule(name)
