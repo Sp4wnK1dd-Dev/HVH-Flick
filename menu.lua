@@ -1,11 +1,24 @@
 -- menu.lua
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local FluentURL = "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
 
+local success, result = pcall(function()
+    return game:HttpGet(FluentURL)
+end)
+
+if not success or not result or result == "" then
+    warn("Не удалось скачать библиотеку Fluent!")
+    return nil
+end
+
+local Fluent = loadstring(result)()
 local Menu = {}
 
 Menu.CreateMenu = function(Config)
-    -- Проверка на существование окна, чтобы не дублировать
-    if Fluent.Window then return end 
+    -- Проверка на то, что Fluent загрузился как таблица
+    if type(Fluent) ~= "table" then 
+        warn("Fluent не инициализировался!")
+        return 
+    end
 
     local Window = Fluent:CreateWindow({
         Title = "HVH Project | User v1.0",
@@ -15,7 +28,7 @@ Menu.CreateMenu = function(Config)
         Acrylic = true,
         Theme = "Dark"
     })
-
+    
     local Tabs = {
         Movement = Window:AddTab({ Title = "Movement", Icon = "rbxassetid://10734950309" }),
         Combat = Window:AddTab({ Title = "Combat", Icon = "rbxassetid://10734950309" }),
