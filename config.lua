@@ -1,4 +1,10 @@
 -- config.lua
+local Config = {
+    Movement = { Bunnyhop = false, SpeedHack = { Enabled = false, Multiplier = 1.2 } },
+    Combat = { Aimbot = false, AutoShoot = false, MinDamage = 10 },
+    Visuals = { Chams = false, Skeletons = false, InfoESP = false }
+}
+
 return {
     Toggles = {
         ["RageBot"] = false,
