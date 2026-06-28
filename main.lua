@@ -19,6 +19,16 @@ local function loadModule(name)
     return nil
 end
 
+-- main.lua
+local Config = loadModule("config") -- Твоя функция загрузки
+local Functions = loadModule("functions")
+local Menu = loadModule("menu")
+
+-- Запуск интерфейса
+if Menu and Menu.CreateMenu then
+    Menu.CreateMenu(Config)
+end
+
 -- Загрузка компонентов
 local Config = loadModule("config")
 local Functions = loadModule("functions")
