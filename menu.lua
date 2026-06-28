@@ -1,13 +1,12 @@
 -- menu.lua
-local FluentURL = "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/main.lua"))()
 
-local success, result = pcall(function()
-    return game:HttpGet(FluentURL)
-end)
+local success, result = pcall(function() return game:HttpGet(url) end)
 
-if not success or not result or result == "" then
-    warn("Не удалось скачать библиотеку Fluent!")
-    return nil
+if success then
+    print("Доступ к GitHub есть! Длина кода:", #result)
+else
+    warn("ДОСТУП ЗАБЛОКИРОВАН! Ошибка:", result)
 end
 
 local Fluent = loadstring(result)()
